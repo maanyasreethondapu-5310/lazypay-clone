@@ -1,0 +1,11 @@
+{
+  "user": {
+    "id": 1,
+    "name": "Srikar",
+    "creditLimit": 20000,
+    "billingCycleDays": 15,
+    "lateFeeFlat": 100
+  },
+  "transactions": [],
+  "nextTxnId": 1
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DueLater — Statement</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="page-header">
+      <a href="/" class="back">←</a>
+      <h1>Statement & History</h1>
+    </div>
+
+    <% if (typeof success !== 'undefined' && success) { %>
+      <div class="alert success"><%= success %></div>
+    <% } %>
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+
+    <div class="content">
+      <div class="card">
+        <% if (transactions.length === 0) { %>
+          <div class="empty">No transactions yet.<br/>Try "Pay Later" to simulate a purchase.</div>
+        <% } else { %>
+          <% transactions.forEach(function(txn) { %>
+            <div class="txn-row">
+              <div class="txn-main">
+                <div class="merchant"><%= txn.merchant %></div>
+                <div class="meta">
+                  <%= txn.category %> · <%= fmtDate(txn.date) %>
+                  <% if (txn.status !== 'paid') { %>
+                    · due <%= fmtDate(txn.dueDate) %>
+                  <% } else { %>
+                    · paid <%= fmtDate(txn.paidDate) %>
+                  <% } %>
+                </div>
+              </div>
+              <div class="txn-right">
+                <div class="amt"><%= fmtMoney(txn.amount) %></div>
+                <span class="badge <%= txn.status %>"><%= txn.status %></span>
+                <% if (txn.status !== 'paid') { %>
+                  <form class="pay-inline" method="POST" action="/transactions/<%= txn.id %>/pay">
+                    <button type="submit" class="btn small">Mark paid</button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+
+    <%- include('partials/bottom-nav', { active: 'history' }) %>
+  </div>
+</body>
+</html>

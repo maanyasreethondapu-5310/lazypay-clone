@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DueLater — Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">⚡ DueLater</div>
+      <div class="greeting">Hi <%= user.name %>, here's your credit line</div>
+
+      <div class="credit-card">
+        <div class="label">Available to spend</div>
+        <div class="amount"><%= fmtMoney(summary.availableCredit) %></div>
+        <div class="bar">
+          <div class="bar-fill" style="width: <%= Math.round((summary.availableCredit / summary.creditLimit) * 100) %>%;"></div>
+        </div>
+        <div class="sub-row">
+          <span>Limit: <%= fmtMoney(summary.creditLimit) %></span>
+          <span>Used: <%= fmtMoney(summary.usedCredit) %></span>
+        </div>
+      </div>
+    </div>
+
+    <% if (error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+    <% if (success) { %>
+      <div class="alert success"><%= success %></div>
+    <% } %>
+
+    <div class="content">
+      <div class="section-title">Quick actions</div>
+      <div class="quick-actions">
+        <a href="/checkout">
+          <span class="emoji">💳</span>Pay Later
+        </a>
+        <a href="/history">
+          <span class="emoji">🧾</span>Statement
+        </a>
+      </div>
+
+      <% if (summary.nextDueDate) { %>
+        <div class="section-title">Next payment due</div>
+        <div class="card">
+          <div class="txn-row">
+            <div class="txn-main">
+              <div class="merchant">Total outstanding</div>
+              <div class="meta">Due on <%= fmtDate(summary.nextDueDate) %><%= summary.overdueCount > 0 ? ' · ' + summary.overdueCount + ' overdue' : '' %></div>
+            </div>
+            <div class="txn-right">
+              <div class="amt"><%= fmtMoney(summary.usedCredit) %></div>
+              <a href="/history" class="badge due">View & pay</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
+      <div class="section-title">
+        Recent activity
+        <a href="/history">See all</a>
+      </div>
+      <div class="card">
+        <% if (recent.length === 0) { %>
+          <div class="empty">No transactions yet.<br/>Try "Pay Later" to simulate a purchase.</div>
+        <% } else { %>
+          <% recent.forEach(function(txn) { %>
+            <div class="txn-row">
+              <div class="txn-main">
+                <div class="merchant"><%= txn.merchant %></div>
+                <div class="meta"><%= txn.category %> · <%= fmtDate(txn.date) %></div>
+              </div>
+              <div class="txn-right">
+                <div class="amt"><%= fmtMoney(txn.amount) %></div>
+                <span class="badge <%= txn.status %>"><%= txn.status %></span>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+
+      <div class="disclaimer">Prototype only — simulated credit line, no real money or KYC.</div>
+      <form class="reset-form" method="POST" action="/reset">
+        <button type="submit">Reset demo data</button>
+      </form>
+    </div>
+
+    <%- include('partials/bottom-nav', { active: 'home' }) %>
+  </div>
+</body>
+</html>
