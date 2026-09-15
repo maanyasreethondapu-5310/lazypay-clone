@@ -3,7 +3,7 @@ const STORAGE_KEY = 'duelater_data';
 const DEFAULT_DATA = {
   user: {
     id: 1,
-    name: 'Srikar',
+    name: null,
     creditLimit: 20000,
     billingCycleDays: 15,
     lateFeeFlat: 100
@@ -120,4 +120,19 @@ function resetDemo() {
   writeDB(cloneDefault());
 }
 
-const Store = { getUser, listTransactions, getSummary, createTransaction, payTransaction, resetDemo };
+function setUserName(name) {
+  const data = readDB();
+  data.user.name = name;
+  writeDB(data);
+  return data.user;
+}
+
+const Store = {
+  getUser,
+  listTransactions,
+  getSummary,
+  createTransaction,
+  payTransaction,
+  resetDemo,
+  setUserName
+};

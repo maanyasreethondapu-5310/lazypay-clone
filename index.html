@@ -10,7 +10,7 @@
   <div class="app">
     <div class="topbar">
       <div class="brand">⚡ DueLater</div>
-      <div class="greeting" id="greeting"></div>
+      <div class="greeting" id="greeting" title="Tap to change your name"></div>
 
       <div class="credit-card">
         <div class="label">Available to spend</div>
@@ -56,6 +56,17 @@
       <a href="index.html" class="active"><span class="emoji">🏠</span>Home</a>
       <a href="checkout.html"><span class="emoji">💳</span>Pay Later</a>
       <a href="history.html"><span class="emoji">🧾</span>History</a>
+    </div>
+  </div>
+
+  <div class="onboarding-overlay hidden" id="onboarding-overlay">
+    <div class="onboarding-card">
+      <div class="onboarding-brand">⚡ DueLater</div>
+      <div class="onboarding-title" id="onboarding-title">What's your name?</div>
+      <form id="name-form">
+        <input type="text" id="name-input" placeholder="e.g. Priya" required autocomplete="off" />
+        <button type="submit" class="btn">Continue</button>
+      </form>
     </div>
   </div>
 

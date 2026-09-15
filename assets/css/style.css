@@ -46,6 +46,14 @@ body {
   margin-top: 4px;
   opacity: 0.85;
   font-size: 14px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.topbar .greeting .edit-hint {
+  opacity: 0.7;
+  font-size: 12px;
+  margin-left: 2px;
 }
 
 .credit-card {
@@ -326,4 +334,51 @@ input:focus, select:focus {
   font-size: 11px;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 23, 48, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.onboarding-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(30, 20, 60, 0.25);
+}
+
+.onboarding-brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--purple-1);
+  margin-bottom: 8px;
+}
+
+.onboarding-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.onboarding-card input {
+  text-align: center;
+}
+
+.onboarding-card .btn {
+  margin-top: 14px;
 }
