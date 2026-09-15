@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DueLater — Pay Later</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="page-header">
+      <a href="index.html" class="back">←</a>
+      <h1>Pay Later Checkout</h1>
+    </div>
+
+    <div id="alerts"></div>
+
+    <div class="content">
+      <div class="card">
+        <div class="txn-row" style="border-bottom:none; padding-top:0;">
+          <div class="txn-main">
+            <div class="merchant">Available credit</div>
+          </div>
+          <div class="txn-right">
+            <div class="amt" id="available-amount"></div>
+          </div>
+        </div>
+      </div>
+
+      <form id="checkout-form">
+        <label for="merchant">Merchant / Bill</label>
+        <input type="text" id="merchant" name="merchant" placeholder="e.g. Amazon, Electricity Bill" required />
+
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option>Shopping</option>
+          <option>Bills & Utilities</option>
+          <option>Food & Groceries</option>
+          <option>Travel</option>
+          <option>Entertainment</option>
+          <option>Other</option>
+        </select>
+
+        <label for="amount">Amount (₹)</label>
+        <input type="number" id="amount" name="amount" placeholder="0.00" min="1" step="0.01" required />
+
+        <div style="margin-top: 20px;">
+          <button type="submit" class="btn">Pay Later</button>
+        </div>
+      </form>
+
+      <div class="disclaimer">
+        Your bill will be added to your statement, due in 15 days. No real payment is made — this is a simulated credit line.
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a href="index.html"><span class="emoji">🏠</span>Home</a>
+      <a href="checkout.html" class="active"><span class="emoji">💳</span>Pay Later</a>
+      <a href="history.html"><span class="emoji">🧾</span>History</a>
+    </div>
+  </div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/checkout.js"></script>
+</body>
+</html>

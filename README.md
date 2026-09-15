@@ -16,23 +16,27 @@ product flow only.
 
 ## Tech
 
-- Node.js + Express
-- EJS templates (server-rendered, no build step)
-- A tiny JSON file (`db/data.json`) as the "database" — easy to read/reset, swap for a real DB later
+- Plain HTML/CSS/JavaScript — no build step, no server, no framework
+- `localStorage` as the "database" — data lives in your browser, easy to reset
 - Plain CSS, mobile-sized layout (max-width ~430px) styled like a fintech app
 
-## Run it
+This runs entirely client-side, so it's hosted directly on **GitHub Pages**:
+`index.html`, `checkout.html`, and `history.html` are the three pages, and
+`assets/js/store.js` holds the same credit-line logic that used to live in
+the server. Open `index.html` (or the Pages URL) and go.
+
+A previous version of this prototype used Node.js + Express + EJS with a
+server-side JSON file as the "database" (`server.js`, `views/`, `db/`).
+Those files are still in the repo for reference / local use:
 
 ```bash
 npm install
 npm start
 ```
 
-Then open **http://localhost:3000** in your browser.
-
-The first run creates `db/data.json` with a demo user who has a ₹20,000
-credit limit. Delete that file (or click "Reset demo data" on the
-dashboard) to start fresh.
+Then open **http://localhost:3000**. The first run creates `db/data.json`
+with a demo user who has a ₹20,000 credit limit. This is unrelated to the
+static site above — the two versions don't share data.
 
 ## Where to extend this next
 
